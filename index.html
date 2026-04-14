@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>UTS Team Official Methods</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e1a 0%, #0f1420 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 16px 80px 16px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 30px 0 20px 0;
+            border-bottom: 2px solid #2a2f3f;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #00d4ff, #7b2f9d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #1a1f2e;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #00d4ff;
+            margin-top: 12px;
+        }
+
+        .search-container {
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            background: #11161f;
+            border: 1px solid #2a2f3f;
+            border-radius: 50px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-box input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-box input::placeholder {
+            color: #5a5f6f;
+        }
+
+        .search-box .clear-btn {
+            background: none;
+            border: none;
+            color: #5a5f6f;
+            cursor: pointer;
+            display: none;
+        }
+
+        .search-info {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #8a8f9f;
+            text-align: center;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            background: #11161f;
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 30px;
+            border: 1px solid #2a2f3f;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00d4ff;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #8a8f9f;
+            text-align: center;
+        }
+
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .method-card {
+            background: #11161f;
+            border-radius: 16px;
+            padding: 20px;
+            transition: transform 0.2s ease;
+            border: 1px solid #2a2f3f;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .method-card:hover {
+            transform: translateY(-4px);
+            border-color: #00d4ff;
+        }
+
+        .method-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, #00d4ff, #7b2f9d);
+        }
+
+        .method-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            background: #0a0e1a;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .method-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #00d4ff;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            text-decoration: none;
+        }
+
+        .whatsapp-float svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #5a5f6f;
+            font-size: 0.8rem;
+            border-top: 1px solid #2a2f3f;
+            margin-top: 40px;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            background: #11161f;
+            border-radius: 16px;
+            border: 1px dashed #ff4444;
+        }
+
+        @media (max-width: 640px) {
+            .methods-grid {
+                grid-template-columns: 1fr;
+            }
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚡ UTS Team Official Methods</h1>
+            <p>Premium Tech Solutions & Methods Hub</p>
+            <div class="badge">🔐 Dynamic Content Portal</div>
+        </div>
+
+        <div class="search-container">
+            <div class="search-box">
+                <span>🔍</span>
+                <input type="text" id="searchInput" placeholder="Search method by name...">
+                <button class="clear-btn" id="clearSearch">✖</button>
+            </div>
+            <div class="search-info" id="searchInfo"></div>
+        </div>
+
+        <div class="stats">
+            <div>
+                <div class="stat-number" id="methodCount">0</div>
+                <div class="stat-label">Total Methods</div>
+            </div>
+            <div>
+                <div class="stat-number" id="visibleCount">0</div>
+                <div class="stat-label">Showing</div>
+            </div>
+        </div>
+
+        <!-- START_METHODS_CONTAINER -->
+        <div class="methods-grid" id="methodsGrid">
+            <!-- METHODS_INJECTION_POINT -->
+        </div>
+        <!-- END_METHODS_CONTAINER -->
+    </div>
+
+    <a href="https://wa.me/923339588254" class="whatsapp-float" target="_blank">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.559 1.094 3.648l-.807 2.449 2.531-.742c1.045.57 2.224.873 3.436.874h.003c3.18 0 5.767-2.586 5.768-5.766.001-3.18-2.585-5.767-5.765-5.767zm-4.233 8.945l-.014-.021c-.514-.749-.788-1.634-.788-2.543 0-2.465 2.006-4.471 4.471-4.471 1.194 0 2.317.465 3.161 1.309.844.845 1.309 1.967 1.308 3.16 0 2.465-2.006 4.471-4.471 4.471-.888 0-1.754-.227-2.516-.656l-2.803.822.652-2.072z"/>
+            <path d="M19.051 4.949C17.021 2.92 14.298 1.772 11.5 1.772c-5.342 0-9.688 4.346-9.688 9.688 0 1.704.445 3.378 1.289 4.839L1.5 22.5l6.348-1.64c1.413.799 3.01 1.222 4.652 1.222h.005c5.342 0 9.688-4.347 9.688-9.689 0-2.586-1.006-5.016-2.842-6.852l-.3.292zM11.5 20.504c-1.446 0-2.87-.393-4.115-1.136l-.296-.176-3.776.976 1.006-3.673-.192-.312c-.797-1.272-1.217-2.735-1.217-4.233 0-4.393 3.575-7.968 7.969-7.968 2.128 0 4.128.829 5.632 2.333 1.504 1.504 2.333 3.504 2.333 5.632.001 4.394-3.574 7.969-7.968 7.969z"/>
+        </svg>
+    </a>
+
+    <div class="footer">
+        <p>© 2024 UTS Team Official | Premium Methods Portal</p>
+    </div>
+
+    <script>
+        // SIMPLE SEARCH - NO LOADER, NO COMPLEX STUFF
+        const searchInput = document.getElementById('searchInput');
+        const clearBtn = document.getElementById('clearSearch');
+        const searchInfo = document.getElementById('searchInfo');
+        
+        function filterMethods() {
+            const term = searchInput.value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.method-card');
+            let visible = 0;
+            
+            cards.forEach(card => {
+                const nameEl = card.querySelector('.method-name');
+                if (nameEl) {
+                    const name = nameEl.textContent.toLowerCase();
+                    if (term === '' || name.includes(term)) {
+                        card.style.display = '';
+                        visible++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+            
+            const total = cards.length;
+            if (term === '') {
+                searchInfo.textContent = `Showing all ${total} methods`;
+                if (clearBtn) clearBtn.style.display = 'none';
+            } else {
+                searchInfo.textContent = `Found ${visible} method${visible !== 1 ? 's' : ''} matching "${term}"`;
+                if (clearBtn) clearBtn.style.display = 'block';
+            }
+            
+            document.getElementById('visibleCount').textContent = visible;
+            
+            const grid = document.getElementById('methodsGrid');
+            const existingNoResult = document.querySelector('.no-results');
+            
+            if (visible === 0 && term !== '') {
+                if (!existingNoResult) {
+                    const div = document.createElement('div');
+                    div.className = 'no-results';
+                    div.innerHTML = `<p>😕 No methods found for "${term}"</p>`;
+                    grid.appendChild(div);
+                }
+            } else if (existingNoResult) {
+                existingNoResult.remove();
+            }
+        }
+        
+        function updateStats() {
+            const total = document.querySelectorAll('.method-card').length;
+            document.getElementById('methodCount').textContent = total;
+            filterMethods();
+        }
+        
+        if (searchInput) {
+            searchInput.addEventListener('input', filterMethods);
+        }
+        if (clearBtn) {
+            clearBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                filterMethods();
+                searchInput.focus();
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', updateStats);
+        
+        const observer = new MutationObserver(updateStats);
+        const grid = document.getElementById('methodsGrid');
+        if (grid) {
+            observer.observe(grid, { childList: true, subtree: true });
+        }
+    </script>
+</body>
+                  </html>
